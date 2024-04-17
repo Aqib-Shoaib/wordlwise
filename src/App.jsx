@@ -5,6 +5,7 @@ import Product from "./pages/product";
 import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login";
 import Page404 from "./pages/Page404";
+import "./index.css"
 
 function App() {
   return (
