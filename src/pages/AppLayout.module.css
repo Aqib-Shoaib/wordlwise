@@ -2,6 +2,7 @@
   height: 100vh;
   padding: 2.4rem;
   overscroll-behavior-y: none;
-  display: flex;
+  display: grid;
+  grid-template-columns: 60% 40%;
   position: relative;
 }
