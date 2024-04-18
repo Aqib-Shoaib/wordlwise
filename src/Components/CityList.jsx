@@ -5,7 +5,7 @@ import CityItem from "./CityItem";
 
 function CityList({ cities, isLoading }) {
   if (!isLoading) return <Spinner />;
-
+  // console.log(cities);
   return (
     <ul className={styles.cityList}>
       {cities.map((city) => (
