@@ -12,23 +12,7 @@ import CountryList from "./Components/CountryList";
 import City from "./Components/City";
 import Form from "./Components/Form";
 
-const BASE_URL = "http://localhost:9000";
-
 function App() {
-  const [cities, setCities] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(function () {
-    async function fetchCities() {
-      setIsLoading(true);
-      const res = await fetch(`${BASE_URL}/cities`);
-      const data = await res.json();
-      // console.log(data);
-      setCities(data);
-    }
-    fetchCities();
-  }, []);
-
   return (
     <BrowserRouter>
       <Routes>
