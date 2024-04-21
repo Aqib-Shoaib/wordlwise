@@ -21,12 +21,53 @@ function CitiesContext({ children }) {
   }, []);
 
   async function getCity(id) {
-    setIsLoading(true);
-    // console.log(id);
-    const res = await fetch(`${BASE_URL}/cities/${id}`);
-    const data = await res.json();
-    // console.log(data);
-    setCurrentCity(data);
+    try {
+      setIsLoading(true);
+      // console.log(id);
+      const res = await fetch(`${BASE_URL}/cities/${id}`);
+      const data = await res.json();
+      // console.log(data);
+      setCurrentCity(data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function addCity(newCity) {
+    try {
+      setIsLoading(true);
+      // console.log(id);
+      const res = await fetch(`${BASE_URL}/cities`, {
+        method: "POST",
+        body: JSON.stringify(newCity),
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+      const data = await res.json();
+      setCurrentCity(data);
+      setCities((citiesss) => [...citiesss, newCity]);
+    } catch (err) {
+      console.log(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  async function delCity(id) {
+    try {
+      setIsLoading(true);
+      // console.log(id);
+      const res = await fetch(`${BASE_URL}/cities/${id}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      setCurrentCity(data);
+      setCities((city) => city.filter((cc) => cc.id !== id));
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
   return (
@@ -36,6 +77,8 @@ function CitiesContext({ children }) {
         isLoading,
         currentCity,
         getCity,
+        addCity,
+        delCity,
       }}
     >
       {children}

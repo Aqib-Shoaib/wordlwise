@@ -16,7 +16,7 @@ import Button from "./Button";
 
 function Map() {
   const [searchParam] = useSearchParams();
-  const [mapPosition, setMapPosition] = useState([0, 0]);
+  const [mapPosition, setMapPosition] = useState([30, 72]);
   const { cities } = useCities();
   const { isLoading, position, getPosition } = useGeolocation();
   const maplat = searchParam.get("lat");
@@ -50,7 +50,7 @@ function Map() {
         {cities.map((city) => (
           <Marker
             position={[city.position.lat, city.position.lng]}
-            key={city.id}
+            key={city.id + Math.trunc(Math.random * Math.random)}
           >
             <Popup>
               <span>{city.emoji}</span>
